@@ -124,7 +124,6 @@ def parse_args():
                        help='delete reminder by ID')
     group.add_argument('-l', type=int, metavar='N', dest='list',
                        help='list the last N created reminders, for a positive integer N')
-    # TODO: if a time is not supplied, assume it to be all_day
     group.add_argument('-a', type=bool, dest="all_day",
                        help='create an all-day reminder')
 

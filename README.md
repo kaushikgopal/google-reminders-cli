@@ -45,3 +45,11 @@ Reminder set successfully:
 **Disclaimer**: Currently there is no official API for _Google Reminders_, so instead,
 this tool imitates a browser request. This may cause google-reminders-cli to stop
 function correctly at any time.
+
+
+
+# Todos
+
+* If a time is not supplied, assume it to be all_day event
+* Add concept of end_date
+* Add repetitive reminders
