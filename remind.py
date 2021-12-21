@@ -50,7 +50,7 @@ def invoke_operation(args):
     inspect the program arguments and invoke the appropriate operation
     """
     client = RemindersClient()
-    
+
     if args.interactive or args.create:
         # prepare the reminder to create
         if args.interactive:
@@ -61,24 +61,24 @@ def invoke_operation(args):
             if dt is None:
                 return
             reminder = Reminder(id=gen_id(), title=title, dt=dt)
-        
+
         # execute creation if applicable
         if reminder is not None:
             if client.create_reminder(reminder):
                 print('Reminder set successfully:')
                 print(reminder)
-    
+
     elif args.get:
         id = args.get
         reminder = client.get_reminder(reminder_id=id)
         if reminder is not None:
             print(reminder)
-    
+
     elif args.delete:
         id = args.delete
         if client.delete_reminder(reminder_id=id):
             print('Reminder deleted successfully')
-    
+
     elif args.list:
         num_reminders = args.list
         if num_reminders < 0:
@@ -88,7 +88,7 @@ def invoke_operation(args):
         if reminders is not None:
             for r in sorted(reminders):
                 print(r)
-    
+
     else:
         print('Wrong usage: no valid action was specified\n'
               'please read help menu (-h) to see correct usage')
@@ -124,7 +124,7 @@ def parse_args():
                        help='delete reminder by ID')
     group.add_argument('-l', type=int, metavar='N', dest='list',
                        help='list the last N created reminders, for a positive integer N')
-    
+
     return parser.parse_args()
 
 
