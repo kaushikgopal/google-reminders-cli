@@ -9,7 +9,7 @@ Run with `-h` to see all supported actions, acceptable time formats, etc.
 ## Installation
 
 ```
-pip3 install requirements
+pip3 install requirements.txt
 ```
 
 On the first run, a consent screen will open in the browser to aquire permission
