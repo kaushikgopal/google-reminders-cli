@@ -5,19 +5,22 @@ It allows creating, deleting and watching reminders
 
 Run with `-h` to see all supported actions, acceptable time formats, etc.
 
+
+## Installation
+
+```
+pip3 install requirements
+```
+
 On the first run, a consent screen will open in the browser to aquire permission
 to access the user's reminders.
 
 App API keys are provided in a separate file, so you may either use them or easily change
 them with your own keys.
 
-## Installation
-
-```
-pip install requirements
-```
 
 ## Usage examples
+
 Create a reminder interactively:
 ```
 $ python3 remind.py -i

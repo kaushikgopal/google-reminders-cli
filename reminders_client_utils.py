@@ -10,8 +10,8 @@ from oauth2client.file import Storage
 
 from reminder import Reminder
 
-APP_KEYS_FILE = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'app_keys.json')
-USER_OAUTH_DATA_FILE = os.path.expanduser('~/.google-reminders-cli-oauth')
+APP_KEYS_FILE = os.path.expanduser('~/.config/google-reminders/app_keys.json')
+USER_OAUTH_DATA_FILE = os.path.expanduser('~/.config/google-reminders/google-reminders-cli-oauth')
 
 
 def authenticate() -> httplib2.Http:
@@ -102,7 +102,7 @@ def list_req_body(num_reminders: int, max_timestamp_msec: int = 0) -> str:
         '5': 1,  # boolean field: 0 or 1. 0 doesn't work ¯\_(ツ)_/¯
         '6': num_reminders,  # number number of reminders to retrieve
     }
-    
+
     if max_timestamp_msec:
         max_timestamp_msec += int(timedelta(hours=15).total_seconds() * 1000)
         body['16'] = max_timestamp_msec
@@ -110,7 +110,7 @@ def list_req_body(num_reminders: int, max_timestamp_msec: int = 0) -> str:
         # timestamp or even a bit smaller timestamp are not returned. Therefore we increase
         # the timestamp by 15 hours, which seems to solve this...  ~~voodoo~~
         # (I wish Google had a normal API for reminders)
-    
+
     return json.dumps(body)
 
 
@@ -127,7 +127,7 @@ def build_reminder(reminder_dict: dict) -> Optional[Reminder]:
         second = r['5']['4']['3']
         creation_timestamp_msec = int(r['18'])
         done = '8' in r and r['8'] == 1
-        
+
         return Reminder(
             id=id,
             title=title,
@@ -135,7 +135,7 @@ def build_reminder(reminder_dict: dict) -> Optional[Reminder]:
             creation_timestamp_msec=creation_timestamp_msec,
             done=done,
         )
-    
+
     except KeyError:
         print('build_reminder failed: unrecognized reminder dictionary format')
         return None
