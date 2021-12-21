@@ -17,6 +17,7 @@ class Reminder:
     id: str
     title: str
     dt: datetime
+    all_day: bool = False
     creation_timestamp_msec: Optional[int] = None
     done: bool = False
 
@@ -33,6 +34,11 @@ class Reminder:
     def __lt__(self, other):
         return self.dt < other.dt
 
+    def __repr_date(self):
+        return (
+            self.dt.strftime('%Y-%m-%d') + ' (All)' if self.all_day
+            else  self.dt.strftime('%Y-%m-%d %H:%M')
+        )
+
     def __repr__(self):
-        format = '%Y-%m-%d %H:%M'
-        return f'{self.dt.strftime(format)}: {self.__repr_title()} ; id="{self.id}"'
+        return f'{self.__repr_date()}: {self.__repr_title()} ; id="{self.id}"'

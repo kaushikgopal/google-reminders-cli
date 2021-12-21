@@ -61,15 +61,18 @@ def create_req_body(reminder: Reminder) -> str:
                 '1': reminder.dt.year,
                 '2': reminder.dt.month,
                 '3': reminder.dt.day,
-                '4': {
-                    '1': reminder.dt.hour,
-                    '2': reminder.dt.minute,
-                    '3': reminder.dt.second,
-                }
             },
             '8': 0
         }
     }
+    if reminder.all_day:
+        body['4']['5']['9'] = 1
+    else:
+        body['4']['5']['4'] = {
+            '1': reminder.dt.hour,
+            '2': reminder.dt.minute,
+            '3': reminder.dt.second,
+        }
     return json.dumps(body)
 
 
@@ -122,9 +125,14 @@ def build_reminder(reminder_dict: dict) -> Optional[Reminder]:
         year = r['5']['1']
         month = r['5']['2']
         day = r['5']['3']
-        hour = r['5']['4']['1']
-        minute = r['5']['4']['2']
-        second = r['5']['4']['3']
+        if '9' in r['5']:
+            all_day = True
+            hour = minute = second = 0
+        else:
+            all_day = False
+            hour = r['5']['4']['1']
+            minute = r['5']['4']['2']
+            second = r['5']['4']['3']
         creation_timestamp_msec = int(r['18'])
         done = '8' in r and r['8'] == 1
 
@@ -133,6 +141,7 @@ def build_reminder(reminder_dict: dict) -> Optional[Reminder]:
             title=title,
             dt=datetime(year, month, day, hour, minute, second),
             creation_timestamp_msec=creation_timestamp_msec,
+            all_day=all_day,
             done=done,
         )
 
