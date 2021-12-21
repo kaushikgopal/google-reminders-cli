@@ -19,7 +19,7 @@ class Reminder:
     dt: datetime
     creation_timestamp_msec: Optional[int] = None
     done: bool = False
-    
+
     def __repr_title(self):
         """
         if reminder is not done return its title as is. otherwise return
@@ -29,10 +29,10 @@ class Reminder:
             self.title if not self.done
             else '̶'.join(c for c in self.title)
         )
-    
+
     def __lt__(self, other):
         return self.dt < other.dt
-    
+
     def __repr__(self):
         format = '%Y-%m-%d %H:%M'
         return f'{self.dt.strftime(format)}: {self.__repr_title()} ; id="{self.id}"'
