@@ -52,4 +52,5 @@ function correctly at any time.
 
 * If a time is not supplied, assume it to be all_day event
 * Add concept of end_date
-* Add repetitive reminders
+* Add recurring reminders
+* Add option to remove confirmation
