@@ -54,3 +54,105 @@ function correctly at any time.
 * Add concept of end_date
 * Add recurring reminders
 * Add option to remove confirmation
+
+
+Notes on recurrence:
+```
+'recurring': 'https://reminders-pa.clients6.google.com/v1internalOP/reminders/recurrence/create',
+
+Request
+
+{
+  "1": {
+    "4": "WRP / /WebCalendar/calendar.web_20211214.09_p0"
+  },
+  "2": {
+    "1": 7
+  },
+  "3": {
+    "1": "1640205493557_212712925"
+  },
+  "4": {
+    "3": "CC: pay balances on all cards for good credit score",
+    "8": 0
+  },
+  "5": {
+    "1": 2,
+    "2": 1,
+    "3": {
+      "1": {
+        "1": 2021,
+        "2": 12,
+        "3": 22,
+        "4": {
+          "1": 10,
+          "2": 0,
+          "3": 0
+        }
+      }
+    },
+    "5": {
+      "1": {
+        "1": 10,
+        "2": 0,
+        "3": 0
+      },
+      "3": 0
+    },
+    "7": {
+      "1": [
+        22
+      ]
+    }
+  }
+}
+
+Response
+Body
+
+{
+  "1": {
+    "1": 2,
+    "2": 1,
+    "3": {
+      "1": {
+        "1": 2021,
+        "2": 12,
+        "3": 22,
+        "4": {
+          "1": 10,
+          "2": 0,
+          "3": 0
+        }
+      }
+    },
+    "4": {
+      "1": {
+        "1": 2022,
+        "2": 12,
+        "3": 22
+      },
+      "4": 1
+    },
+    "5": {
+      "1": {
+        "1": 10,
+        "2": 0,
+        "3": 0
+      },
+      "3": 0
+    },
+    "7": {
+      "1": [
+        22
+      ]
+    }
+  },
+  "2": {
+    "1": "11306912",
+    "2": "synthesized-version-info"
+  }
+}
+
+
+```

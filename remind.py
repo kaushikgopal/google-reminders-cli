@@ -1,7 +1,6 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
 import argparse
-import readline  # to enable navigating through entered text
 from datetime import datetime
 from typing import Optional
 
